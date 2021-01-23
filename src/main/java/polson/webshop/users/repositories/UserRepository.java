@@ -1,7 +1,7 @@
 package polson.webshop.users.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import polson.webshop.users.models.entites.User;
+import polson.webshop.users.models.entities.User;
 
 import java.util.Optional;
 

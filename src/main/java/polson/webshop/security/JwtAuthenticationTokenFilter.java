@@ -20,7 +20,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     public JwtAuthenticationTokenFilter() { super(); }
 
-    @Value("${POLSON_JWT_SECRET_KEY")
+    @Value("${POLSON_JWT_SECRET_KEY}")
     private String tokenSecretKey;
 
     @Override

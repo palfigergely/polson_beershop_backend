@@ -1,6 +1,7 @@
 package polson.webshop.users.services;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -14,7 +15,7 @@ import polson.webshop.users.models.dtos.AuthenticationDTO;
 import polson.webshop.users.models.dtos.LoginResponseDTO;
 import polson.webshop.users.models.dtos.RegistrationDTO;
 import polson.webshop.users.models.dtos.UserDTO;
-import polson.webshop.users.models.entites.User;
+import polson.webshop.users.models.entities.User;
 import polson.webshop.users.repositories.UserRepository;
 
 import java.security.Key;
@@ -122,6 +123,7 @@ public class UserServiceImpl implements UserService{
             Map<String, String> payload = new HashMap<>();
             payload.put("userId", Integer.toString(user.getId()));
             payload.put("userName", user.getUsername());
+            System.out.println(tokenSecretKey);
 
             Key key = Keys.hmacShaKeyFor(tokenSecretKey.getBytes());
             String jws = Jwts.builder().setClaims(payload).signWith(key).compact();
@@ -129,5 +131,11 @@ public class UserServiceImpl implements UserService{
         } else {
            throw new AuthorisedUserNotFoundException();
         }
+    }
+
+    @Override
+    public UserDTO getUser(String userName) throws ApiException {
+        User user = findUser(userName);
+        return convertUserToUserDTO(user);
     }
 }

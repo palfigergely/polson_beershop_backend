@@ -1,4 +1,4 @@
-package polson.webshop.users.models.entites;
+package polson.webshop.users.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

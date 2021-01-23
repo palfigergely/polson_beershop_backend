@@ -8,7 +8,7 @@ import polson.webshop.users.models.dtos.AuthenticationDTO;
 import polson.webshop.users.models.dtos.LoginResponseDTO;
 import polson.webshop.users.models.dtos.RegistrationDTO;
 import polson.webshop.users.models.dtos.UserDTO;
-import polson.webshop.users.models.entites.User;
+import polson.webshop.users.models.entities.User;
 
 @Service
 public interface UserService {
@@ -23,4 +23,6 @@ public interface UserService {
     LoginResponseDTO login(AuthenticationDTO authDTO) throws RuntimeException;
     User findUser(String username) throws RuntimeException;
     LoginResponseDTO validateCredentials(User user, String password) throws AuthorisedUserNotFoundException;
+
+    UserDTO getUser(String userName) throws ApiException;
 }
