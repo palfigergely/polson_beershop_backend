@@ -28,7 +28,7 @@ public class BeerController {
     @PostMapping("")
     public ResponseEntity<?> getBeers(Authentication auth) {
         JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
-        Beer beer = beerService.saveBeer();
+        BeerDTO beerDTO = beerService.saveBeer();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(beer);
