@@ -1,15 +1,15 @@
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
 
-    `id` int NOT NULL AUTO_INCREMENT,
-    `username` varchar(50) NOT NULL,
-    `brewery` varchar(50) NOT NULL,
-    `password` char(60) NOT NULL,
-    `email` varchar(100) NOT NULL,
-    `city` varchar(100) NOT NULL,
-    `country` varchar(100),
-    `logo` varchar(100) NULL,
-    `sortiment` int NOT NULL DEFAULT 0,
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(50) NOT NULL,
+    `brewery` VARCHAR(50) NOT NULL,
+    `password` CHAR(60) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `city` VARCHAR(100) NOT NULL,
+    `country` VARCHAR(100),
+    `logo` VARCHAR(100) NULL,
+    `sortiment` BIGINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`username`)
 

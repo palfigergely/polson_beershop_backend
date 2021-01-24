@@ -1,16 +1,15 @@
 package polson.webshop.beers.controllers;
 
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import polson.webshop.beers.models.dtos.BeerDTO;
+import polson.webshop.beers.models.dtos.RegBeerDTO;
 import polson.webshop.beers.services.BeerService;
 import polson.webshop.security.JwtUserDetails;
 
@@ -26,31 +25,12 @@ public class BeerController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> getBeers(Authentication auth) {
+    public ResponseEntity<?> createBeer(Authentication auth, @RequestBody RegBeerDTO regBeerDTO) {
         JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
-        BeerDTO beerDTO = beerService.saveBeer();
+        BeerDTO beerDTO = beerService.saveBeer(userDetails, regBeerDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(beer);
+                .body(beerDTO);
     }
 
-    /*@GetMapping("/all")
-    public ResponseEntity<?> getBeers() {
-
-    }*/
-
-    /*@GetMapping("/{id}")
-    public ResponseEntity<?> getBeers() {
-
-    }*/
-
-    /*@PutMapping("/{id}")
-    public ResponseEntity<?> getBeers() {
-
-    }*/
-
-    /*@DeleteMapping("/{id}")
-    public ResponseEntity<?> getBeers() {
-
-    }*/
 }

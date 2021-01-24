@@ -1,5 +1,6 @@
 package polson.webshop.beers.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,12 +31,12 @@ public class Beer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String beerName;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    private String brewery;
     @Enumerated(EnumType.STRING)
     private BeerType type;
     private int ibu;

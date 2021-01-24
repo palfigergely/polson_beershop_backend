@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService{
         user.setCity(registrationDTO.getCity());
         user.setCountry(registrationDTO.getCountry() == null ? "Hungary" : registrationDTO.getCountry());
         user.setLogo(registrationDTO.getLogo());
-        user.setSortiment(0);
+        user.setSortiment(0L);
         return user;
     }
 
@@ -118,10 +118,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findUserById(Long userId) throws RuntimeException {
+        return userRepository.findById(userId)
+                .orElseThrow(AuthorisedUserNotFoundException::new);
+    }
+
+    @Override
     public LoginResponseDTO validateCredentials(User user, String password) throws AuthorisedUserNotFoundException {
         if (BCrypt.checkpw(password, user.getPassword())) {
             Map<String, String> payload = new HashMap<>();
-            payload.put("userId", Integer.toString(user.getId()));
+            payload.put("userId", Long.toString(user.getId()));
             payload.put("userName", user.getUsername());
             System.out.println(tokenSecretKey);
 

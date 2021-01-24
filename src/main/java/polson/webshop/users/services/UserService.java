@@ -22,6 +22,7 @@ public interface UserService {
 
     LoginResponseDTO login(AuthenticationDTO authDTO) throws RuntimeException;
     User findUser(String username) throws RuntimeException;
+    User findUserById(Long userId) throws RuntimeException;
     LoginResponseDTO validateCredentials(User user, String password) throws AuthorisedUserNotFoundException;
 
     UserDTO getUser(String userName) throws ApiException;

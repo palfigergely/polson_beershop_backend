@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDTO {
 
-    private int id;
+    private Long id;
     private String username;
     private String brewery;
     private String email;
     private String city;
     private String country;
     private String logo;
-    private int sortiment;
+    private Long sortiment;
 
 }

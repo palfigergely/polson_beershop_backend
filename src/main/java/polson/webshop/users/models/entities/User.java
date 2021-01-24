@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String username;
     private String brewery;
     @Column(columnDefinition = "char")
@@ -30,6 +30,6 @@ public class User {
     private String city;
     private String country;
     private String logo;
-    private int sortiment;
+    private Long sortiment;
 
 }

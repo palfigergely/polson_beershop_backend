@@ -31,5 +31,4 @@ public enum BeerType {
     public final String type;
 
     BeerType(String type) { this.type = type; }
-
 }
