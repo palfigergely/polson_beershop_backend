@@ -7,24 +7,24 @@ public enum BeerType {
     STOUT("stout"),
     @JsonProperty("porter")
     PORTER("porter"),
-    @JsonProperty("dark lager")
-    DARK_LAGER("dark lager"),
+    @JsonProperty("dark_lager")
+    DARK_LAGER("dark_lager"),
     @JsonProperty("bock")
     BOCK("bock"),
     @JsonProperty("dunkel")
     DUNKEL("dunkel"),
-    @JsonProperty("brown ale")
+    @JsonProperty("brown_ale")
     BROWN_ALE("brown ale"),
     @JsonProperty("cider")
     CIDER("cider"),
-    @JsonProperty("pale ale")
-    PALE_ALE("pale ale"),
+    @JsonProperty("pale_ale")
+    PALE_ALE("pale_ale"),
     @JsonProperty("wheat")
     WHEAT("wheat"),
     @JsonProperty("marzen")
     MARZEN("marzen"),
-    @JsonProperty("pale lager")
-    PALE_LAGER("pale lager"),
+    @JsonProperty("pale_lager")
+    PALE_LAGER("pale_lager"),
     @JsonProperty("pilsner")
     PILSNER("pilsner");
 
