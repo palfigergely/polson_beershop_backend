@@ -8,6 +8,8 @@ import polson.webshop.beers.models.entities.Beer;
 import polson.webshop.beers.repositories.BeerRepository;
 import polson.webshop.security.JwtUserDetails;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BeerServiceImpl implements BeerService {
@@ -20,4 +22,10 @@ public class BeerServiceImpl implements BeerService {
         Beer beer = beerRepository.save(beerFactory.createBeer(regBeerDTO, userDetails.getUserId()));
         return beerFactory.convertBeerToBeerDto(beer);
     }
+
+    @Override
+    public List<Beer> getBeersByBrewery(String brewery) {
+        return beerRepository.findBeersByBrewery(brewery);
+    }
+
 }

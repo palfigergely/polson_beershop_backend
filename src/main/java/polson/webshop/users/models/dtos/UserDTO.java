@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import polson.webshop.beers.models.entities.Beer;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -18,6 +21,6 @@ public class UserDTO {
     private String city;
     private String country;
     private String logo;
-    private Long sortiment;
+    private List<Beer> sortiment;
 
 }

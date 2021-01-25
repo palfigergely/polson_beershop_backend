@@ -6,6 +6,8 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import polson.webshop.beers.models.entities.Beer;
+import polson.webshop.beers.services.BeerService;
 import polson.webshop.exceptions.ApiException;
 import polson.webshop.exceptions.AuthorisedUserNotFoundException;
 import polson.webshop.exceptions.BrewerynameAlreadyTakenException;
@@ -19,7 +21,9 @@ import polson.webshop.users.models.entities.User;
 import polson.webshop.users.repositories.UserRepository;
 
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -27,10 +31,13 @@ public class UserServiceImpl implements UserService{
 
     @Value("${token.secretKey}")
     private String tokenSecretKey;
-    public UserRepository userRepository;
+    private UserRepository userRepository;
+    private BeerService beerService;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           BeerService beerService) {
         this.userRepository = userRepository;
+        this.beerService = beerService;
     }
 
     @Override
@@ -78,7 +85,7 @@ public class UserServiceImpl implements UserService{
         user.setCity(registrationDTO.getCity());
         user.setCountry(registrationDTO.getCountry() == null ? "Hungary" : registrationDTO.getCountry());
         user.setLogo(registrationDTO.getLogo());
-        user.setSortiment(0L);
+        user.setSortiment(null);
         return user;
     }
 
@@ -129,7 +136,6 @@ public class UserServiceImpl implements UserService{
             Map<String, String> payload = new HashMap<>();
             payload.put("userId", Long.toString(user.getId()));
             payload.put("userName", user.getUsername());
-            System.out.println(tokenSecretKey);
 
             Key key = Keys.hmacShaKeyFor(tokenSecretKey.getBytes());
             String jws = Jwts.builder().setClaims(payload).signWith(key).compact();
@@ -142,6 +148,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO getUser(String userName) throws ApiException {
         User user = findUser(userName);
+        user.setSortiment(beerService.getBeersByBrewery(user.getBrewery()));
         return convertUserToUserDTO(user);
     }
 }

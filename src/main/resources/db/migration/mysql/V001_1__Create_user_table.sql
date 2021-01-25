@@ -9,7 +9,6 @@ CREATE TABLE `users` (
     `city` VARCHAR(100) NOT NULL,
     `country` VARCHAR(100),
     `logo` VARCHAR(100) NULL,
-    `sortiment` BIGINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`username`)
 

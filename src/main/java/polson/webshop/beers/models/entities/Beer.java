@@ -33,6 +33,7 @@ public class Beer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String beerName;
+    private String brewery;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -3,6 +3,7 @@ CREATE TABLE `beers` (
 
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `beer_name` VARCHAR(60) NOT NULL,
+    `brewery` VARCHAR(50) NOT NULL,
     `user_id` BIGINT NULL,
     `type` VARCHAR(40) NOT NULL,
     `ibu` INT NULL,

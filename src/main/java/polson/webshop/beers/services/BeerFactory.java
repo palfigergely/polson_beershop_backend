@@ -1,6 +1,8 @@
 package polson.webshop.beers.services;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import polson.webshop.beers.models.dtos.BeerDTO;
 import polson.webshop.beers.models.dtos.RegBeerDTO;
@@ -14,7 +16,8 @@ public class BeerFactory {
 
     private UserService userService;
 
-    public BeerFactory(UserService userService) {
+    @Autowired
+    public BeerFactory(@Lazy UserService userService) {
         this.userService = userService;
     }
 
@@ -22,6 +25,7 @@ public class BeerFactory {
         User user = userService.findUserById(userId);
         Beer beer = new Beer();
         beer.setBeerName(regBeerDTO.getBeerName());
+        beer.setBrewery(user.getBrewery());
         beer.setUser(user);
         beer.setType(regBeerDTO.getType());
         beer.setIbu(regBeerDTO.getIbu());
@@ -36,7 +40,7 @@ public class BeerFactory {
         BeerDTO beerDTO = new BeerDTO();
         beerDTO.setId(beer.getId());
         beerDTO.setBeerName(beer.getBeerName());
-        beerDTO.setBrewery(beer.getUser().getBrewery());
+        beerDTO.setBrewery(beer.getBrewery());
         beerDTO.setType(beer.getType());
         beerDTO.setIbu(beer.getIbu());
         beerDTO.setAbv(beer.getAbv());
