@@ -30,7 +30,6 @@ public class BeerFactory {
         beer.setType(regBeerDTO.getType());
         beer.setIbu(regBeerDTO.getIbu());
         beer.setAbv(regBeerDTO.getAbv());
-        beer.setEbc(regBeerDTO.getEbc());
         beer.setStock(regBeerDTO.getStock());
         beer.setRate(0F);
         return beer;
@@ -44,7 +43,6 @@ public class BeerFactory {
         beerDTO.setType(beer.getType());
         beerDTO.setIbu(beer.getIbu());
         beerDTO.setAbv(beer.getAbv());
-        beerDTO.setEbc(beer.getEbc());
         beerDTO.setStock(beer.getStock());
         beerDTO.setRate(beer.getRate());
         return beerDTO;

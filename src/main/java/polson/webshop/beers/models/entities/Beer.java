@@ -42,7 +42,6 @@ public class Beer {
     private BeerType type;
     private int ibu;
     private float abv;
-    private float ebc;
     private Integer stock;
     private float rate;
 
