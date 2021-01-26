@@ -4,15 +4,29 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version "5.2.1"
 }
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
 
 group = 'polson'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
     }
+}
+
+checkstyle {
+    toolVersion "8.18"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.destination file("${buildDir}/jacoco")    }
 }
 
 repositories {
