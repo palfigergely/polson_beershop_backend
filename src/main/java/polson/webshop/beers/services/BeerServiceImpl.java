@@ -9,6 +9,7 @@ import polson.webshop.beers.models.dtos.RegBeerDTO;
 import polson.webshop.beers.models.entities.Beer;
 import polson.webshop.beers.models.entities.BeerType;
 import polson.webshop.beers.repositories.BeerRepository;
+import polson.webshop.exceptions.ForbiddenRequestException;
 import polson.webshop.exceptions.IdNotFoundException;
 import polson.webshop.exceptions.UnauthorizedRequestException;
 import polson.webshop.security.JwtUserDetails;
@@ -80,7 +81,7 @@ public class BeerServiceImpl implements BeerService {
         Beer beer = beerRepository.findById(beerId)
                 .orElseThrow(IdNotFoundException::new);
         if (userdetails.getUserId() != beer.getUser().getId()) {
-            throw new UnauthorizedRequestException();
+            throw new ForbiddenRequestException();
         }
         beerRepository.delete(beer);
         return new DelBeerDTO(beerId, beer.getBrewery());
