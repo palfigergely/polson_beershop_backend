@@ -5,6 +5,7 @@ import polson.webshop.beers.models.dtos.BeerDTO;
 import polson.webshop.beers.models.dtos.BeerListDTO;
 import polson.webshop.beers.models.dtos.DelBeerDTO;
 import polson.webshop.beers.models.dtos.RegBeerDTO;
+import polson.webshop.beers.models.dtos.StockIncrDTO;
 import polson.webshop.beers.models.entities.Beer;
 import polson.webshop.security.JwtUserDetails;
 
@@ -19,5 +20,6 @@ public interface BeerService {
     List<Beer> getBeersByType(String type);
     List<Beer> getBeersByBreweryAndByType(String brewery, String type);
     BeerListDTO getBeersSelectedByQuery(String brewery, String type);
-    DelBeerDTO deleteBeer(JwtUserDetails userdetails, Long beerId);
+    DelBeerDTO deleteBeer(JwtUserDetails userDetails, Long beerId);
+    BeerDTO increaseStock(JwtUserDetails userDetails, StockIncrDTO stockIncrDTO);
 }

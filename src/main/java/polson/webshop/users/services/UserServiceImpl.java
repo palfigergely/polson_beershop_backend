@@ -136,6 +136,7 @@ public class UserServiceImpl implements UserService{
             Map<String, String> payload = new HashMap<>();
             payload.put("userId", Long.toString(user.getId()));
             payload.put("userName", user.getUsername());
+            payload.put("brewery", user.getBrewery());
 
             Key key = Keys.hmacShaKeyFor(tokenSecretKey.getBytes());
             String jws = Jwts.builder().setClaims(payload).signWith(key).compact();
