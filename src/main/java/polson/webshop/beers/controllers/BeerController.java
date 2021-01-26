@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import polson.webshop.beers.models.dtos.BeerDTO;
+import polson.webshop.beers.models.dtos.DelBeerDTO;
 import polson.webshop.beers.models.dtos.RegBeerDTO;
 import polson.webshop.beers.services.BeerService;
 import polson.webshop.security.JwtUserDetails;
@@ -27,7 +29,7 @@ public class BeerController {
         this.beerService = beerService;
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<?> createBeer(Authentication auth, @RequestBody RegBeerDTO regBeerDTO) {
         JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
         BeerDTO beerDTO = beerService.saveBeer(userDetails, regBeerDTO);
@@ -50,5 +52,14 @@ public class BeerController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(beerService.getBeersSelectedByQuery(brewery, type));
+    }
+
+    @DeleteMapping("/{beerId}")
+    public ResponseEntity<?> deleteBeer(Authentication auth, @PathVariable Long beerId) {
+        JwtUserDetails userDetails= (JwtUserDetails) auth.getPrincipal();
+        DelBeerDTO delBeerDTO = beerService.deleteBeer(userDetails, beerId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(delBeerDTO);
     }
 }
