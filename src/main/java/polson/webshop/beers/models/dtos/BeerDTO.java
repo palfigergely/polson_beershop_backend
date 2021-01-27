@@ -14,13 +14,13 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BeerDTO {
-    private Long id;
-    private String beerName;
-    private String brewery;
-    @Enumerated(EnumType.STRING)
-    private BeerType type;
-    private int ibu;
-    private float abv;
-    private Integer stock;
-    private float rate;
+  private Long id;
+  private String beerName;
+  private String brewery;
+  @Enumerated(EnumType.STRING)
+  private BeerType type;
+  private int ibu;
+  private float abv;
+  private Integer stock;
+  private float rate;
 }

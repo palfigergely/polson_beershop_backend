@@ -13,17 +13,25 @@ import polson.webshop.users.models.entities.User;
 @Service
 public interface UserService {
 
-    UserDTO registerUser(RegistrationDTO registrationDTO) throws ApiException;
-    boolean checkInputBody(AuthenticationDTO authDTO) throws ParameterMissingException;
-    boolean validateRegistrationData(RegistrationDTO registrationDTO) throws ApiException;
-    User createUser(RegistrationDTO registrationDTO);
-    UserDTO convertUserToUserDTO(User user);
-    String encodePassword(String plaintext);
+  UserDTO registerUser(RegistrationDTO registrationDTO) throws ApiException;
 
-    LoginResponseDTO login(AuthenticationDTO authDTO) throws RuntimeException;
-    User findUser(String username) throws RuntimeException;
-    User findUserById(Long userId) throws RuntimeException;
-    LoginResponseDTO validateCredentials(User user, String password) throws AuthorisedUserNotFoundException;
+  boolean checkInputBody(AuthenticationDTO authDTO) throws ParameterMissingException;
 
-    UserDTO getUser(String userName) throws ApiException;
+  boolean validateRegistrationData(RegistrationDTO registrationDTO) throws ApiException;
+
+  User createUser(RegistrationDTO registrationDTO);
+
+  UserDTO convertUserToUserDTO(User user);
+
+  String encodePassword(String plaintext);
+
+  LoginResponseDTO login(AuthenticationDTO authDTO) throws RuntimeException;
+
+  User findUser(String username) throws RuntimeException;
+
+  User findUserById(Long userId) throws RuntimeException;
+
+  LoginResponseDTO validateCredentials(User user, String password) throws AuthorisedUserNotFoundException;
+
+  UserDTO getUser(String userName) throws ApiException;
 }

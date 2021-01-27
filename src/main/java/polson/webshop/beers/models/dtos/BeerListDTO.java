@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BeerListDTO {
-    private List<Beer> beers;
+  private List<Beer> beers;
 }

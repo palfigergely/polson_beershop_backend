@@ -14,13 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO {
 
-    private Long id;
-    private String username;
-    private String brewery;
-    private String email;
-    private String city;
-    private String country;
-    private String logo;
-    private List<Beer> sortiment;
+  private Long id;
+  private String username;
+  private String brewery;
+  private String email;
+  private String city;
+  private String country;
+  private String logo;
+  private List<Beer> sortiment;
 
 }

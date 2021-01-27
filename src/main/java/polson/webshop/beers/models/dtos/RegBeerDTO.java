@@ -14,10 +14,10 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegBeerDTO {
-    private String beerName;
-    @Enumerated(EnumType.STRING)
-    private BeerType type;
-    private int ibu;
-    private float abv;
-    private Integer stock;
+  private String beerName;
+  @Enumerated(EnumType.STRING)
+  private BeerType type;
+  private int ibu;
+  private float abv;
+  private Integer stock;
 }

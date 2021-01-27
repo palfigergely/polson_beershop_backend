@@ -4,11 +4,10 @@ import org.springframework.http.HttpStatus;
 
 public class IdNotFoundException extends ApiException {
 
-    public static final String MESSAGE = "ID not found";
+  public static final String MESSAGE = "ID not found";
 
-    public IdNotFoundException() {
-        super(MESSAGE);
-        setHttpStatus(HttpStatus.NOT_FOUND);
-    }
-
+  public IdNotFoundException() {
+    super(MESSAGE);
+    setHttpStatus(HttpStatus.NOT_FOUND);
+  }
 }

@@ -13,13 +13,21 @@ import java.util.List;
 
 @Service
 public interface BeerService {
-    BeerDTO saveBeer(JwtUserDetails userDetails, RegBeerDTO regBeerDTO);
-    List<Beer> getBeersByBrewery(String brewery);
-    BeerDTO getBeerById(Long id);
-    List<Beer> getAllBeers();
-    List<Beer> getBeersByType(String type);
-    List<Beer> getBeersByBreweryAndByType(String brewery, String type);
-    BeerListDTO getBeersSelectedByQuery(String brewery, String type);
-    DelBeerDTO deleteBeer(JwtUserDetails userDetails, Long beerId);
-    BeerDTO increaseStock(JwtUserDetails userDetails, StockIncrDTO stockIncrDTO);
+  BeerDTO saveBeer(JwtUserDetails userDetails, RegBeerDTO regBeerDTO);
+
+  List<Beer> getBeersByBrewery(String brewery);
+
+  BeerDTO getBeerById(Long id);
+
+  List<Beer> getAllBeers();
+
+  List<Beer> getBeersByType(String type);
+
+  List<Beer> getBeersByBreweryAndByType(String brewery, String type);
+
+  BeerListDTO getBeersSelectedByQuery(String brewery, String type);
+
+  DelBeerDTO deleteBeer(JwtUserDetails userDetails, Long beerId);
+
+  BeerDTO increaseStock(JwtUserDetails userDetails, StockIncrDTO stockIncrDTO);
 }

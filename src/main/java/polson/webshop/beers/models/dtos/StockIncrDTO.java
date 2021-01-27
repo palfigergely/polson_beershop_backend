@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StockIncrDTO {
-    private Long beerId;
-    private Integer stockIncreasedBy;
+  private Long beerId;
+  private Integer stockIncreasedBy;
 }

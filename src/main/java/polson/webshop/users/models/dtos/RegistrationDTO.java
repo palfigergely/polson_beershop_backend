@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode (callSuper = true)
-public class RegistrationDTO extends AuthenticationDTO{
+public class RegistrationDTO extends AuthenticationDTO {
 
-    private String brewery;
-    private String email;
-    private String city;
-    private String country;
-    private String logo;
+  private String brewery;
+  private String email;
+  private String city;
+  private String country;
+  private String logo;
 
 }

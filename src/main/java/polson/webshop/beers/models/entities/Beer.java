@@ -29,20 +29,20 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class Beer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String beerName;
-    private String brewery;
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @Enumerated(EnumType.STRING)
-    private BeerType type;
-    private int ibu;
-    private float abv;
-    private Integer stock;
-    private float rate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String beerName;
+  private String brewery;
+  @JsonIgnore
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+  @Enumerated(EnumType.STRING)
+  private BeerType type;
+  private int ibu;
+  private float abv;
+  private Integer stock;
+  private float rate;
 
 }

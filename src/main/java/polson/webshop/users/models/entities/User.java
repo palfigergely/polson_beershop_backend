@@ -1,6 +1,7 @@
 package polson.webshop.users.models.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
@@ -20,21 +21,22 @@ import java.util.List;
 @Table(name = "users")
 @FlywayDataSource
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String username;
-    private String brewery;
-    @Column(columnDefinition = "char")
-    private String password;
-    private String email;
-    private String city;
-    private String country;
-    private String logo;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Beer> sortiment;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String username;
+  private String brewery;
+  @Column(columnDefinition = "char")
+  private String password;
+  private String email;
+  private String city;
+  private String country;
+  private String logo;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private List<Beer> sortiment;
 
 }

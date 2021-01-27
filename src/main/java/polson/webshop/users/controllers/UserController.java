@@ -22,32 +22,32 @@ import polson.webshop.users.services.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+  private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody RegistrationDTO registration)
-        throws RuntimeException {
-        UserDTO registeredUser = userService.registerUser(registration);
-        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser);
-    }
+  @PostMapping("/register")
+  public ResponseEntity<?> registerUser(@RequestBody RegistrationDTO registration)
+      throws RuntimeException {
+    UserDTO registeredUser = userService.registerUser(registration);
+    return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser);
+  }
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody AuthenticationDTO body)
-        throws RuntimeException {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.login(body));
-    }
+  @PostMapping("/login")
+  public ResponseEntity<LoginResponseDTO> login(@RequestBody AuthenticationDTO body)
+      throws RuntimeException {
+    return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(userService.login(body));
+  }
 
-    @GetMapping("")
-    public ResponseEntity<?> getUserDetials(Authentication auth) throws ApiException {
-        JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(userService.getUser(userDetails.getUsername()));
-    }
+  @GetMapping("")
+  public ResponseEntity<?> getUserDetials(Authentication auth) throws ApiException {
+    JwtUserDetails userDetails = (JwtUserDetails) auth.getPrincipal();
+    return ResponseEntity
+          .status(HttpStatus.OK)
+          .body(userService.getUser(userDetails.getUsername()));
+  }
 }

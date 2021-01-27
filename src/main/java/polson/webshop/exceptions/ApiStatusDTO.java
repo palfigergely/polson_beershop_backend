@@ -9,11 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ApiStatusDTO {
 
-    private String status;
-    private String message;
+  private String status;
+  private String message;
 
-    public static ApiStatusDTO ok(String message) { return new ApiStatusDTO("ok", message); }
+  public static ApiStatusDTO ok(String message) {
+    return new ApiStatusDTO("ok", message);
+  }
 
-    public static ApiStatusDTO error(String message) { return new ApiStatusDTO("error", message); }
-
+  public static ApiStatusDTO error(String message) {
+    return new ApiStatusDTO("error", message);
+  }
 }

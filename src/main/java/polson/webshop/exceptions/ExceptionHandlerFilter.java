@@ -15,17 +15,17 @@ import java.io.IOException;
 @Component
 public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
-    @Autowired
-    @Qualifier("handlerExceptionResolver")
-    private HandlerExceptionResolver resolver;
+  @Autowired
+  @Qualifier("handlerExceptionResolver")
+  private HandlerExceptionResolver resolver;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-        try {
-            filterChain.doFilter(request, response);
-        } catch (Exception e) {
-            resolver.resolveException(request, response, null, e);
-        }
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+      throws ServletException, IOException {
+    try {
+      filterChain.doFilter(request, response);
+    } catch (Exception e) {
+      resolver.resolveException(request, response, null, e);
     }
+  }
 }

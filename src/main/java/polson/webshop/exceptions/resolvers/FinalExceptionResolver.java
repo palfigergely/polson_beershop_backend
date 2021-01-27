@@ -12,10 +12,10 @@ import polson.webshop.exceptions.ApiStatusDTO;
 @Order(Ordered.LOWEST_PRECEDENCE)
 public class FinalExceptionResolver {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ApiStatusDTO> handleUnhandledExceptions(Exception ex) {
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiStatusDTO.error(ex.getMessage()));
-    }
+  @ExceptionHandler(Exception.class)
+  public final ResponseEntity<ApiStatusDTO> handleUnhandledExceptions(Exception ex) {
+    return ResponseEntity
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(ApiStatusDTO.error(ex.getMessage()));
+  }
 }

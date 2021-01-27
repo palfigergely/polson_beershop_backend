@@ -22,58 +22,58 @@ import polson.webshop.exceptions.ExceptionHandlerFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
-    private ExceptionHandlerFilter exceptionHandlerFilter;
-    private HandlerExceptionResolver resolver;
+  private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+  private ExceptionHandlerFilter exceptionHandlerFilter;
+  private HandlerExceptionResolver resolver;
 
 
-    public SecurityConfig(JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter,
-                          ExceptionHandlerFilter exceptionHandlerFilter,
-                          @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
-        this.jwtAuthenticationTokenFilter = jwtAuthenticationTokenFilter;
-        this.exceptionHandlerFilter = exceptionHandlerFilter;
-        this.resolver = resolver;
-    }
+  public SecurityConfig(JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter,
+                        ExceptionHandlerFilter exceptionHandlerFilter,
+                        @Qualifier("handlerExceptionResolver") HandlerExceptionResolver resolver) {
+    this.jwtAuthenticationTokenFilter = jwtAuthenticationTokenFilter;
+    this.exceptionHandlerFilter = exceptionHandlerFilter;
+    this.resolver = resolver;
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        return super.userDetailsService();
-    }
+  @Bean
+  @Override
+  public UserDetailsService userDetailsService() {
+    return super.userDetailsService();
+  }
 
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/v2/api-docs", "/configration/**", "/swagger*/**", "/webjars/**").permitAll()
-                .antMatchers("/user/register").permitAll()
-                .antMatchers("/user/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/beer/{id}").permitAll()
-                .antMatchers("/beer/all").permitAll()
-                .anyRequest().authenticated()
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .exceptionHandling().authenticationEntryPoint((req, res, e) -> resolver.resolveException(req, res, null, e))
-                .and()
-                .addFilterBefore(exceptionHandlerFilter, LogoutFilter.class)
-                .addFilterAfter(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+     .csrf().disable()
+     .authorizeRequests()
+     .antMatchers("/v2/api-docs", "/configration/**", "/swagger*/**", "/webjars/**").permitAll()
+     .antMatchers("/user/register").permitAll()
+     .antMatchers("/user/login").permitAll()
+     .antMatchers(HttpMethod.GET, "/beer/{id}").permitAll()
+     .antMatchers("/beer/all").permitAll()
+     .anyRequest().authenticated()
+     .and().sessionManagement()
+     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+     .and()
+     .exceptionHandling().authenticationEntryPoint((req, res, e) -> resolver.resolveException(req, res, null, e))
+     .and()
+     .addFilterBefore(exceptionHandlerFilter, LogoutFilter.class)
+     .addFilterAfter(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+  }
 }

@@ -28,7 +28,9 @@ public enum BeerType {
     @JsonProperty("pilsner")
     PILSNER("pilsner");
 
-    public final String type;
+  public final String type;
 
-    BeerType(String type) { this.type = type; }
+  BeerType(String type) {
+    this.type = type;
+  }
 }
