@@ -10,7 +10,7 @@ public class UserFactory {
     User user = User.builder()
         .id(999L)
         .username("User")
-        .password("valami")
+        .password("$2a$10$vjHjMatJSVyPJscsA/Q1s.g2NEqudqFR/FMg2LnvQaewfsoHot3Pu")
         .email("example@test.com")
         .brewery("testBrewery999")
         .city("City")
@@ -22,7 +22,7 @@ public class UserFactory {
   public static User createUser() {
     User user = User.builder()
         .username("User")
-        .password("valami")
+        .password("$2a$10$vjHjMatJSVyPJscsA/Q1s.g2NEqudqFR/FMg2LnvQaewfsoHot3Pu")
         .email("example@test.com")
         .brewery("Brewery")
         .city("City")

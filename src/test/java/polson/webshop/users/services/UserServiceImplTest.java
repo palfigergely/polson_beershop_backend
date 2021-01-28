@@ -102,7 +102,7 @@ public class UserServiceImplTest {
     try {
       userService.validateRegistrationData(registrationDTO);
     } catch (WrongPasswordFormatException e) {
-      Assert.assertEquals("Password must be at least 8 characters.", e.getMessage());
+      Assert.assertEquals("Password must be at least 8 characters long", e.getMessage());
     }
   }
 
@@ -114,7 +114,7 @@ public class UserServiceImplTest {
     try {
       userService.validateCredentials(user, requestPassword);
     } catch (AuthorisedUserNotFoundException e) {
-      Assert.assertEquals("Username or password is incorrect.", e.getMessage());
+      Assert.assertEquals("Username or password is incorrect", e.getMessage());
       Assert.assertEquals(AuthorisedUserNotFoundException.HTTP_STATUS, e.getHttpStatus());
     }
   }
@@ -131,7 +131,7 @@ public class UserServiceImplTest {
     try {
       userService.validateRegistrationData(registrationDTO);
     } catch (UsernameAlreadyTakenException e) {
-      Assert.assertEquals("Username is already taken.", e.getMessage());
+      Assert.assertEquals("Username is already taken", e.getMessage());
     }
   }
 
